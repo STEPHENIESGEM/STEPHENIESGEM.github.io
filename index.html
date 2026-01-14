@@ -6,54 +6,383 @@
     <title>RideWire | NOVA - AI Roundtable That Solves Wicked Problems</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; color: #1a202c; }
-        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 100px 20px; text-align: center; }
-        .header h1 { font-size: 3.5em; margin-bottom: 20px; font-weight: 800; }
-        .header .tagline { font-size: 1.8em; margin-bottom: 40px; opacity: 0.95; }
-        .nova-intro { font-size: 2.2em; margin-top: 30px; margin-bottom: 20px; font-weight: 600; }
-        .subtitle { font-size: 1.3em; margin-bottom: 50px; opacity: 0.9; }
-        .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-        .btn { padding: 18px 40px; font-size: 1.1em; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.2s; display: inline-block; }
-        .btn-primary { background: white; color: #667eea; border: 3px solid white; }
-        .btn-secondary { background: transparent; color: white; border: 3px solid white; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
-        .section { margin-bottom: 80px; }
-        .section-title { font-size: 2.5em; margin-bottom: 30px; text-align: center; color: #667eea; font-weight: 700; }
-        .section-content { font-size: 1.2em; line-height: 1.8; color: #4a5568; }
-        . ai-team { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top:  50px; }
-        . ai-card { background: #f7fafc; padding: 30px; border-radius: 12px; border-left: 5px solid #667eea; transition: transform 0.2s; }
-        .ai-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2); }
-        .ai-card h3 { font-size: 1.5em; margin-bottom: 15px; color: #667eea; }
-        .ai-card .role { font-weight: 600; color: #2d3748; margin-bottom: 10px; }
-        .ai-card .description { color: #4a5568; line-height: 1.6; }
-        .process { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 20px; margin:  80px 0; }
-        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top:  50px; }
-        .step { text-align: center; }
-        .step-number { font-size: 3em; font-weight: 800; opacity: 0.3; margin-bottom: 10px; }
-        .step h3 { font-size: 1.4em; margin-bottom: 15px; }
-        .pricing { background: #f7fafc; padding: 80px 20px; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; max-width: 1200px; margin-left: auto; margin-right:  auto; }
-        .price-card { background: white; padding:  40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; transition: transform 0.2s; }
-        .price-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3); }
-        .price-card. featured { border:  3px solid #667eea; transform: scale(1.05); }
-        .price-card h3 { font-size: 1.8em; margin-bottom: 20px; color: #667eea; }
-        .price { font-size: 3em; font-weight: 800; color: #2d3748; margin-bottom: 10px; }
-        .price-card .features { list-style: none; margin: 30px 0; text-align: left; }
-        .price-card .features li { padding: 10px 0; border-bottom: 1px solid #e2e8f0; }
-        .price-card .features li:before { content: "✓ "; color: #667eea; font-weight: bold; margin-right: 10px; }
-        .footer { background: #1a202c; color: white; padding: 60px 20px; text-align:  center; }
-        .footer h3 { font-size: 2em; margin-bottom: 20px; }
-        .footer-links { display: flex; justify-content: center; gap: 30px; margin:  30px 0; flex-wrap: wrap; }
-        . footer-links a { color: white; text-decoration: none; font-size: 1.1em; transition: color 0.2s; }
-        .footer-links a:hover { color: #667eea; }
-        .badge { display: inline-block; background:  rgba(255,255,255,0.2); padding: 8px 16px; border-radius:  20px; font-size: 0.9em; margin: 10px 5px; }
+        
+        body { 
+            font-family: 'Helvetica Neue', 'Arial', sans-serif; 
+            line-height: 1.7; 
+            color: #2b2b2b; 
+            background: #fafafa;
+            letter-spacing: 0.3px;
+        }
+        
+        /* PBS Documentary Style Header - Cinematic Boardroom */
+        .header { 
+            background: linear-gradient(180deg, #0a1929 0%, #1a2f42 50%, #2a4158 100%);
+            color: #ffffff; 
+            padding: 120px 20px 100px; 
+            text-align: center; 
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.02) 50%, transparent 100%),
+                radial-gradient(circle at 30% 50%, rgba(139,92,68,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .header h1 { 
+            font-size: 3.8em; 
+            margin-bottom: 25px; 
+            font-weight: 300; 
+            letter-spacing: 8px;
+            color: #ffffff;
+            text-transform: uppercase;
+            position: relative;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+        
+        .header .tagline { 
+            font-size: 1.6em; 
+            margin-bottom: 50px; 
+            opacity: 0.92; 
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #c8b8a3;
+        }
+        
+        .nova-intro { 
+            font-size: 2.4em; 
+            margin-top: 40px; 
+            margin-bottom: 25px; 
+            font-weight: 400; 
+            letter-spacing: 3px;
+            color: #d4a574;
+            text-transform: uppercase;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+        
+        .subtitle { 
+            font-size: 1.25em; 
+            margin-bottom: 20px; 
+            opacity: 0.88; 
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+        }
+        
+        .cta-buttons { 
+            display: flex; 
+            gap: 20px; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .btn { 
+            padding: 18px 45px; 
+            font-size: 1.05em; 
+            border-radius: 2px; 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: all 0.3s ease; 
+            display: inline-block; 
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 0.95em;
+        }
+        
+        .btn-primary { 
+            background: #d4a574; 
+            color: #0a1929; 
+            border: 2px solid #d4a574; 
+        }
+        
+        .btn-secondary { 
+            background: transparent; 
+            color: #ffffff; 
+            border: 2px solid #ffffff; 
+        }
+        
+        .btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 20px rgba(212,165,116,0.4); 
+        }
+        
+        .btn-primary:hover {
+            background: #c49563;
+            border-color: #c49563;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 100px 20px; 
+        }
+        
+        .section { 
+            margin-bottom: 100px; 
+        }
+        
+        .section-title { 
+            font-size: 2.8em; 
+            margin-bottom: 40px; 
+            text-align: center; 
+            color: #1a2f42; 
+            font-weight: 300; 
+            letter-spacing: 2px;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+        
+        .section-content { 
+            font-size: 1.2em; 
+            line-height: 1.9; 
+            color: #4a4a4a; 
+            font-weight: 300;
+        }
+        
+        .ai-team { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 35px; 
+            margin-top: 60px; 
+        }
+        
+        .ai-card { 
+            background: #ffffff; 
+            padding: 35px; 
+            border-radius: 0; 
+            border-left: 4px solid #d4a574; 
+            border-bottom: 1px solid #e8e8e8;
+            transition: all 0.3s ease; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .ai-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 25px rgba(26,47,66,0.15); 
+            border-left-color: #1a2f42;
+        }
+        
+        .ai-card h3 { 
+            font-size: 1.6em; 
+            margin-bottom: 18px; 
+            color: #1a2f42; 
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        
+        .ai-card .role { 
+            font-weight: 500; 
+            color: #8b5c44; 
+            margin-bottom: 12px; 
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 1.5px;
+        }
+        
+        .ai-card .description { 
+            color: #5a5a5a; 
+            line-height: 1.7; 
+            font-weight: 300;
+        }
+        
+        /* Documentary-style Process Section */
+        .process { 
+            background: linear-gradient(180deg, #1a2f42 0%, #0a1929 100%); 
+            color: #ffffff; 
+            padding: 100px 20px; 
+            margin: 100px 0; 
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.2);
+        }
+        
+        .process::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 50%, rgba(212,165,116,0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .process-steps { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 50px; 
+            margin-top: 60px; 
+            position: relative;
+        }
+        
+        .step { 
+            text-align: center; 
+        }
+        
+        .step-number { 
+            font-size: 3.5em; 
+            font-weight: 200; 
+            opacity: 0.25; 
+            margin-bottom: 15px; 
+            color: #d4a574;
+            letter-spacing: 3px;
+        }
+        
+        .step h3 { 
+            font-size: 1.5em; 
+            margin-bottom: 18px; 
+            font-weight: 400;
+            letter-spacing: 1.5px;
+        }
+        
+        .step p {
+            font-weight: 300;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+        
+        .pricing { 
+            background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%); 
+            padding: 100px 20px; 
+        }
+        
+        .pricing-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 35px; 
+            margin-top: 60px; 
+            max-width: 1200px; 
+            margin-left: auto; 
+            margin-right: auto; 
+        }
+        
+        .price-card { 
+            background: #ffffff; 
+            padding: 45px; 
+            border-radius: 0; 
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12); 
+            text-align: center; 
+            transition: all 0.3s ease; 
+            border-top: 3px solid #e8e8e8;
+        }
+        
+        .price-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 35px rgba(26,47,66,0.2); 
+        }
+        
+        .price-card.featured { 
+            border-top: 3px solid #d4a574; 
+            transform: scale(1.02); 
+            box-shadow: 0 8px 30px rgba(212,165,116,0.25);
+        }
+        
+        .price-card h3 { 
+            font-size: 1.9em; 
+            margin-bottom: 25px; 
+            color: #1a2f42; 
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .price { 
+            font-size: 3.2em; 
+            font-weight: 300; 
+            color: #2b2b2b; 
+            margin-bottom: 15px; 
+            letter-spacing: -1px;
+        }
+        
+        .price-card .features { 
+            list-style: none; 
+            margin: 35px 0; 
+            text-align: left; 
+        }
+        
+        .price-card .features li { 
+            padding: 12px 0; 
+            border-bottom: 1px solid #f0f0f0; 
+            font-weight: 300;
+            color: #4a4a4a;
+        }
+        
+        .price-card .features li:before { 
+            content: "✓ "; 
+            color: #d4a574; 
+            font-weight: 600; 
+            margin-right: 12px; 
+        }
+        
+        .footer { 
+            background: #0a1929; 
+            color: #ffffff; 
+            padding: 80px 20px; 
+            text-align: center; 
+        }
+        
+        .footer h3 { 
+            font-size: 2.2em; 
+            margin-bottom: 25px; 
+            font-weight: 300;
+            letter-spacing: 6px;
+        }
+        
+        .footer-links { 
+            display: flex; 
+            justify-content: center; 
+            gap: 35px; 
+            margin: 35px 0; 
+            flex-wrap: wrap; 
+        }
+        
+        .footer-links a { 
+            color: #c8b8a3; 
+            text-decoration: none; 
+            font-size: 1.1em; 
+            transition: color 0.3s; 
+            letter-spacing: 0.5px;
+            font-weight: 300;
+        }
+        
+        .footer-links a:hover { 
+            color: #d4a574; 
+        }
+        
+        .badge { 
+            display: inline-block; 
+            background: rgba(212,165,116,0.15); 
+            padding: 10px 20px; 
+            border-radius: 0; 
+            font-size: 0.85em; 
+            margin: 12px 8px; 
+            border: 1px solid rgba(212,165,116,0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+        
         @media (max-width: 768px) {
-            .header h1 { font-size:  2em; }
-            . header .tagline { font-size: 1.2em; }
-            .nova-intro { font-size: 1.5em; }
+            .header h1 { font-size: 2.2em; letter-spacing: 4px; }
+            .header .tagline { font-size: 1.3em; }
+            .nova-intro { font-size: 1.7em; }
             .cta-buttons { flex-direction: column; }
             .btn { width: 100%; }
+            .section-title { font-size: 2em; }
+            .container { padding: 60px 20px; }
         }
     </style>
 </head>
@@ -123,7 +452,7 @@
 
     <div class="process">
         <div class="container">
-            <h2 style="font-size: 2.5em; text-align: center; margin-bottom: 20px;">48 Hours to Breakthrough</h2>
+            <h2 style="font-size: 2.8em; text-align: center; margin-bottom: 30px; font-weight: 300; letter-spacing: 2px;">48 Hours to Breakthrough</h2>
             <div class="process-steps">
                 <div class="step">
                     <div class="step-number">01</div>
@@ -188,7 +517,7 @@
     </div>
 
     <div class="pricing">
-        <h2 class="section-title" style="color: #2d3748;">Transparent Pricing</h2>
+        <h2 class="section-title" style="color: #1a2f42;">Transparent Pricing</h2>
         <div class="pricing-grid">
             <div class="price-card">
                 <h3>Standard</h3>
@@ -200,7 +529,7 @@
                     <li>2-hour delivery call</li>
                     <li>Email support</li>
                 </ul>
-                <a href="mailto:hello@ridewireai.com?subject=Standard%20Package" class="btn btn-primary" style="width: 100%; margin-top:  20px;">Get Started</a>
+                <a href="mailto:hello@ridewireai.com?subject=Standard%20Package" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Get Started</a>
             </div>
             <div class="price-card featured">
                 <h3>Rush</h3>
@@ -227,26 +556,26 @@
                 <a href="mailto:hello@ridewireai.com?subject=Emergency%20Package" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Get Started</a>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 50px; font-size: 1.2em; color: #4a5568;">
+        <div style="text-align: center; margin-top: 50px; font-size: 1.2em; color: #5a5a5a;">
             <p><strong>🎁 LAUNCH SPECIAL: </strong> First 3 customers get it FREE (for case study + testimonial)</p>
-            <p style="margin-top:  15px;">Payment:  Stripe • Wire • Crypto • PayPal</p>
+            <p style="margin-top: 15px; font-weight: 300;">Payment: Stripe • Wire • Crypto • PayPal</p>
         </div>
     </div>
 
     <div class="footer">
         <div>
             <h3>RIDEWIRE.TECH</h3>
-            <p style="font-size: 1.2em; margin: 20px 0;">NOVA: A RideWire Production</p>
-            <p>Powered by GitHub Copilot & The AI Hub</p>
+            <p style="font-size: 1.2em; margin: 20px 0; font-weight: 300; opacity: 0.9;">NOVA: A RideWire Production</p>
+            <p style="font-weight: 300; opacity: 0.85;">Powered by GitHub Copilot & The AI Hub</p>
             <div class="footer-links">
                 <a href="mailto:hello@ridewireai.com">hello@ridewireai.com</a>
                 <a href="https://github.com/STEPHENIESGEM" target="_blank">GitHub</a>
                 <a href="https://twitter.com/RideWireTech" target="_blank">Twitter</a>
             </div>
-            <div style="margin-top:  40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
-                <p>© 2025 RideWire.  All rights reserved.</p>
-                <p style="margin-top: 10px; opacity: 0.7;">Built by humans + AI working together.</p>
-                <p style="opacity: 0.7;">Solving wicked problems, one roundtable at a time.</p>
+            <div style="margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="font-weight: 300;">© 2025 RideWire. All rights reserved.</p>
+                <p style="margin-top: 10px; opacity: 0.7; font-weight: 300;">Built by humans + AI working together.</p>
+                <p style="opacity: 0.7; font-weight: 300;">Solving wicked problems, one roundtable at a time.</p>
             </div>
         </div>
     </div>
